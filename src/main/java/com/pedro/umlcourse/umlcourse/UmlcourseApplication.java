@@ -28,12 +28,12 @@ public class UmlcourseApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Category cat1 = new Category(null, "Informatica");
-		Category cat2 = new Category(null, "Escritorio");
+		Category cat1 = new Category(1, "Informatica");
+		Category cat2 = new Category(2, "Escritorio");
 
-		Product p1 = new Product(null, "Computador", 2000.00);
-		Product p2 = new Product(null, "Impressora", 800.00);
-		Product p3 = new Product(null, "Mouse", 60.00);
+		Product p1 = new Product(1, "Computador", 2000.00);
+		Product p2 = new Product(2, "Impressora", 800.00);
+		Product p3 = new Product(3, "Mouse", 60.00);
 
 		cat1.getProducts().addAll(Arrays.asList(p1,p2,p3));
 		cat2.getProducts().addAll(Arrays.asList(p2));
