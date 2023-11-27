@@ -1,20 +1,16 @@
 package com.pedro.umlcourse.umlcourse;
 
-import java.util.Arrays;
-
+import com.pedro.umlcourse.umlcourse.domain.Category;
 import com.pedro.umlcourse.umlcourse.domain.City;
+import com.pedro.umlcourse.umlcourse.domain.Product;
 import com.pedro.umlcourse.umlcourse.domain.State;
-import com.pedro.umlcourse.umlcourse.repositories.CitiesRepository;
-import com.pedro.umlcourse.umlcourse.repositories.StateRepository;
+import com.pedro.umlcourse.umlcourse.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.pedro.umlcourse.umlcourse.domain.Category;
-import com.pedro.umlcourse.umlcourse.domain.Product;
-import com.pedro.umlcourse.umlcourse.repositories.CategoryRepository;
-import com.pedro.umlcourse.umlcourse.repositories.ProductRepository;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class UmlCourseApplication implements CommandLineRunner {
@@ -30,6 +26,9 @@ public class UmlCourseApplication implements CommandLineRunner {
 
 	@Autowired
 	private CitiesRepository citiesRepository;
+
+	@Autowired
+	private CustomerRepository customerRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(UmlCourseApplication.class, args);
@@ -52,7 +51,7 @@ public class UmlCourseApplication implements CommandLineRunner {
 		p2.getCategories().addAll(Arrays.asList(cat1,cat2));
 		p3.getCategories().addAll(Arrays.asList(cat1));
 
-		State sta1 = new State(null, "minas gerais");
+		State sta1 = new State(null, "Minas Gerais");
 		State sta2 = new State(null, "São Paulo");
 
 		City ct1 = new City(null, "Uberlandia", sta1);

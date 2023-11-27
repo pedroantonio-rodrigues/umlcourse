@@ -2,6 +2,8 @@ package com.pedro.umlcourse.umlcourse.domain;
 
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,7 +14,9 @@ public class City implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "state_id")
     private State state;

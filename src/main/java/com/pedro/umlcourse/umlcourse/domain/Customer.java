@@ -1,5 +1,6 @@
 package com.pedro.umlcourse.umlcourse.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pedro.umlcourse.umlcourse.enums.CustomerType;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Customer implements Serializable {
     private String cpfOrCnpj;
     private Integer type;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "customer")
     private List<Address> adresses = new ArrayList<>();
 
