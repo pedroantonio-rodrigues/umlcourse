@@ -25,8 +25,13 @@ public class Customer implements Serializable {
     @ElementCollection
     @CollectionTable(name = "PHONE")
     private Set<String> phones = new HashSet<>();
-    public Customer(){
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders = new ArrayList<>();
+
+    public Customer() {
     }
+
     public Customer(Integer id, String name, String email, String cpfOrCnpj, CustomerType type) {
         this.id = id;
         this.name = name;
@@ -91,6 +96,14 @@ public class Customer implements Serializable {
         this.phones = phones;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,3 +117,5 @@ public class Customer implements Serializable {
         return Objects.hash(id);
     }
 }
+
+
