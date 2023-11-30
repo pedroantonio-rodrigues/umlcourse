@@ -1,5 +1,7 @@
 package com.pedro.umlcourse.umlcourse.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pedro.umlcourse.umlcourse.enums.CustomerType;
 
@@ -18,7 +20,7 @@ public class Customer implements Serializable {
     private String cpfOrCnpj;
     private Integer type;
 
-    @JsonManagedReference
+
     @OneToMany(mappedBy = "customer")
     private List<Address> adresses = new ArrayList<>();
 
@@ -26,6 +28,7 @@ public class Customer implements Serializable {
     @CollectionTable(name = "PHONE")
     private Set<String> phones = new HashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Order> orders = new ArrayList<>();
 

@@ -1,18 +1,15 @@
 package com.pedro.umlcourse.umlcourse.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.aspectj.weaver.ast.Or;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.Set;
 
 @Entity
 public class Product implements Serializable {
@@ -24,7 +21,7 @@ public class Product implements Serializable {
     private String name;
     private Double price;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
     name = "PRODUCT_CATEGORY", 
@@ -32,6 +29,10 @@ public class Product implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "categories_id")
     )
     private List<Category> categories = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Product() {
     }
@@ -42,6 +43,14 @@ public class Product implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
+    public List<Order> getOrders(){
+        List<Order> list = new ArrayList<>();
+        for (OrderItem x : items){
+            list.add(x.getOrder());
+        }
+        return list;
+    }
     public Integer getId() {
         return id;
     }
@@ -72,6 +81,14 @@ public class Product implements Serializable {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<OrderItem> items) {
+        this.items = items;
     }
 
     @Override

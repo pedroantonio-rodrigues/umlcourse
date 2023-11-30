@@ -1,5 +1,7 @@
 package com.pedro.umlcourse.umlcourse.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pedro.umlcourse.umlcourse.enums.PaymentStatus;
 
 import javax.persistence.*;
@@ -12,6 +14,8 @@ public class Payment implements Serializable {
     @Id
     private Integer id;
     private PaymentStatus paymentStatus;
+
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "order_id")
     @MapsId

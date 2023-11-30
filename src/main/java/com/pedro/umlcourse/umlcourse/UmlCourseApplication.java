@@ -1,10 +1,8 @@
 package com.pedro.umlcourse.umlcourse;
 
-import com.pedro.umlcourse.umlcourse.domain.Category;
-import com.pedro.umlcourse.umlcourse.domain.City;
-import com.pedro.umlcourse.umlcourse.domain.Product;
-import com.pedro.umlcourse.umlcourse.domain.State;
+import com.pedro.umlcourse.umlcourse.domain.*;
 import com.pedro.umlcourse.umlcourse.repositories.*;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -67,6 +65,8 @@ public class UmlCourseApplication implements CommandLineRunner {
 
 		stateRepository.saveAll(Arrays.asList(sta1,sta2));
 		citiesRepository.saveAll(Arrays.asList(ct1,ct2,ct3));
+
+		OrderItem oi1 = new OrderItem();
 
 	}
 	
